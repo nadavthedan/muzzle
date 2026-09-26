@@ -13,13 +13,14 @@ include(FetchContent)
 FetchContent_Declare(
     ftxui
     GIT_REPOSITORY https://github.com/ArthurSonzogni/ftxui
-    GIT_TAG        main
+    GIT_TAG        v7.0.3
+    GIT_PROGRESS   TRUE
+    GIT_SHALLOW    TRUE
+    EXCLUDE_FROM_ALL
 )
 FetchContent_MakeAvailable(ftxui)
 
-# Define the executable target
-add_executable(muzzle_app apps/main.cpp)
-
-# Link the FTXUI library to the application
-# PRIVATE visibility ensures downstream targets don't implicitly inherit this dependency
-target_link_libraries(muzzle_app PRIVATE ftxui::ftxui)
+# The library layer must be configured after FTXUI, since it links against
+# the ftxui:: targets that FetchContent makes available above.
+add_subdirectory(src)
+add_subdirectory(apps)

@@ -1,5 +1,7 @@
 # add all files in the library explicitly after muzzle_lib
-add_library(muzzle_lib)
+add_library(muzzle_lib
+    render.cpp
+)
 
 # Create a namespaced alias so internal targets link consistently
 add_library(muzzle::lib ALIAS muzzle_lib)
