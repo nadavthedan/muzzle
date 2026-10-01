@@ -1,6 +1,8 @@
 # add all files in the library explicitly after muzzle_lib
 add_library(muzzle_lib
-    render.cpp
+    rendering/render.cpp
+    dissection/protocols.cpp
+    dissection/disector.cpp
 )
 
 # Create a namespaced alias so internal targets link consistently
